@@ -8,7 +8,7 @@ RUN mkdir -p /run/mysqld && \
     mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/run/mysqld
 
-COPY my.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY conf/my.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 RUN mkdir -p /home/lefoffan/data && \
     chown -R mysql:mysql /home/lefoffan/data
