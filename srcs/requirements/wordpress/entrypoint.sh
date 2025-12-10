@@ -30,10 +30,10 @@ if [ ! -f ./wp-config.php ]; then
 
     # create the 2sd user (1st: admin)
     wp user create \
-	$USER1_NAME \
-	$USER1_EMAIL \
+	$USER2_LOGIN \
+	$USER2_EMAIL \
 	--role=author \
-	--user_pass=$USER1_PASS --allow-root
+	--user_pass=$USER2_PASSWORD --allow-root
 
     echo "Worpress installed successfully !"
 else
