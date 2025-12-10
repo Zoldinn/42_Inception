@@ -1,0 +1,71 @@
+name: inception
+
+services:
+  mariadb:
+    container_name: mariadb
+    networks:
+      - inception
+    build:
+      context: .
+      dockerfile: requirements/mariadb/Dockerfile
+    image: mariadb
+    env_file: .env
+    restart: always
+    expose:
+      - "3306"
+    volumes:
+      - mariadb:/var/lib/mysql
+
+  nginx:
+    container_name: nginx
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+    build:
+      context: .
+      dockerfile: requirements/nginx/Dockerfile
+    image: nginx
+    env_file: .env
+    restart: on_failure
+    volumes:
+      - "wordpress:/var/www/wordpress"
+    ports:
+      - "443:443"
+
+  wordpress:
+    container_name: wordpress
+    networks:
+      - inception
+    expose:
+      - "9000"
+    env_file: .env
+    depends_on:
+      - mariadb
+    restart: on_failure
+    build:
+      context: .
+      dockerfile: requirements/wordpress/Dockerfile
+    image: wordpress
+    volumes:
+      - "wordpress:/var/www/wordpress"
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/lefoffan/data/mariadb
+
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/lefoffan/data/wordpress
+
+networks:
+  inception:
+    driver: bridge
+
