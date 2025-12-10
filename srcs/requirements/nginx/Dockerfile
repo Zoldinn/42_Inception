@@ -1,7 +1,7 @@
-FROM Debian:12-slim
+FROM debian:12-slim
 
 RUN apt update && apt upgrade
-RUN apt install -y curl nginx OpenSSL
+RUN apt install -y curl nginx openssl
 RUN apt clean && rm -rf /var/lib/apt/lists/*	#lighten the image
 
 # create folder for certificate

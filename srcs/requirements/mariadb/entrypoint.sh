@@ -3,6 +3,8 @@
 if [ ! -d "/var/lib/mysql/$SQL_DATABASE" ]; then
 	service mariadb start
 
+	# maybe need to initialize sql (cf. loic)
+
 	# wait mariadb start
 	until mysqladmin ping; do
 		sleep 1
