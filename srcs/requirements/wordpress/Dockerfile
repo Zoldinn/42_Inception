@@ -1,11 +1,7 @@
 FROM debian:12-slim
 
-# directory for php to stock his pid file
-RUN mkdir -p /run/php && \
-    chown -R www-data:www-data /run/php
-
 # install dependencies
-RUN sudo apt update && apt upgrade && apt install -y curl \
+RUN apt update && apt upgrade -y && apt install -y curl \
     php-fpm \
     php-mysql \
     php-curl \
@@ -17,6 +13,10 @@ RUN sudo apt update && apt upgrade && apt install -y curl \
     php-zip \
     mariadb-client \
     && rm -rf /var/lib/apt/lists/*
+
+# directory for php to stock his pid file
+RUN mkdir -p /run/php && \
+    chown -R www-data:www-data /run/php
 
 # install wp-cli (wordpress client)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
