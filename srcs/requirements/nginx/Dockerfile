@@ -15,7 +15,7 @@ RUN openssl req -x509 -nodes -days 365 \
 # create folder for nginx.conf
 RUN mkdir -p /var/run/nginx
 # copy our nginx.conf in the folder to nginx use it
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # allow nginx to communicate using port 80
 EXPOSE 80
