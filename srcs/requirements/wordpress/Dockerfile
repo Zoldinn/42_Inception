@@ -32,6 +32,9 @@ WORKDIR /var/www/wordpress
 # this way wp and nginx can communicates
 EXPOSE 9000
 
+# configure php-fpm to listen on port 9000 (by default it listen a unix socket file)
+RUN sed -i 's+listen = /run/php/php8.2-fpm.sock+listen = 9000+g' /etc/php/8.2/fpm/pool.d/www.conf
+
 # run the script
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
