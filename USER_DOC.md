@@ -9,30 +9,31 @@ The Inception stack provides a fully functional web environment:
 ## How to Start and Stop the Project
 All commands must be run from the root of the repository.
 
-* **Start the infrastructure:**
+**Start the infrastructure**:
   ```bash
   make
   ```
   The first launch may take a few minutes to build the images.
 
-  ### Stop the infrastructure:
+**Stop the infrastructure**:
   ```bash
   make down
   ```
+
+**Clean all, the database too**:
+```bash
+make fclean
+```
 ## Accessing the Website
 Once the services are running, open your web browser.
-- Main Website: https://lefoffan.42.fr
-- Administration Panel: https://lefoffan.42.fr/wp-admin
-  - Login: (See credentials below)
-  - Password: (See credentials below)
+- Main Website: `https://<login>.42.fr`
+- Administration Panel: `https://<login>.42.fr/wp-admin`
+  - Connect with the login you defined in `.env` file.
 #### Note: 
 *Since we use a self-signed SSL certificate, your browser will display a security warning ("Your connection is not private"). This is expected; you can safely proceed by clicking "Advanced" -> "Proceed to...".*
 
 ## Credentials
-For security reasons, credentials should not be hardcoded. However, for this evaluation context, the default credentials configured in the .env file are:
-- WordPress Admin User: Check `WP_ADMIN_USER` in `srcs/.env`
-- WordPress Admin Password: Check `WP_ADMIN_PASSWORD` in `srcs/.env`
-- Database Root Password: Check `MYSQL_ROOT_PASSWORD` in `srcs/.env`
+For security reasons, credentials should not be hardcoded. So, for this project I used a `.env` file. To see how to populate it, see `DEV_DOC.md`
 
 ## Health Check
 To verify that the services are running correctly:
