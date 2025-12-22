@@ -17,8 +17,7 @@ RUN mkdir -p /var/run/nginx
 # copy our nginx.conf in the folder to nginx use it
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# allow nginx to communicate using port 80
-EXPOSE 80
+EXPOSE 443
 
 # start nginx
 CMD ["nginx", "-g", "daemon off;"]
