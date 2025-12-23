@@ -19,23 +19,27 @@ All commands must be run from the root of the repository.
   ```bash
   make down
   ```
+This stop the services, but the data is always stored.
 
-**Clean all, the database too**:
+**Clean all (the database too)**:
 ```bash
 make fclean
 ```
+This clean absolutely all, it's like when you cloned the repository, there's nothing left.
 ## Accessing the Website
 Once the services are running, open your web browser.
 - Main Website: `https://<login>.42.fr`
 - Administration Panel: `https://<login>.42.fr/wp-admin`
-  - Connect with the login you defined in `.env` file.
+  - Connect with the login you defined in `.env` file. (refer to Crendentials)
 #### Note: 
 *Since we use a self-signed SSL certificate, your browser will display a security warning ("Your connection is not private"). This is expected; you can safely proceed by clicking "Advanced" -> "Proceed to...".*
 
 ## Credentials
-For security reasons, credentials should not be hardcoded. So, for this project I used a `.env` file. To see how to populate it, see `DEV_DOC.md`
+For security reasons, credentials should not be hardcoded into the different configurations files. So, for this project I used a `.env` file. To see how to populate it, see `DEV_DOC.md`
 
 ## Health Check
 To verify that the services are running correctly:
 1. `Run docker ps` in your terminal. You should see three containers (nginx, wordpress, mariadb) with the status Up.
 2. Visit the URL. If the WordPress page loads, the stack is operational.
+
+If you want more explanations, see the `DEV_DOC.md`
