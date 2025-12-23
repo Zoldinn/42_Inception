@@ -15,9 +15,9 @@ RUN openssl req -x509 -nodes -days 365 \
 # create folder for nginx.conf
 RUN mkdir -p /var/run/nginx
 # copy our nginx.conf in the folder to nginx use it
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 443
+EXPOSE 8443
 
 # start nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -18,13 +18,18 @@ RUN apt update && apt upgrade -y && apt install -y curl \
 RUN mkdir -p /run/php && \
     chown -R www-data:www-data /run/php
 
+RUN mkdir -p /var/www/wordpress && \
+    chown -R www-data:www-data /var/www/wordpress && \
+    chmod -R 755 /var/www/wordpress
+
 # install wp-cli (wordpress client)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-COPY entrypoint.sh /usr/local/bin/
+COPY tools/entrypoint.sh /usr/local/bin/
 RUN  chmod +x /usr/local/bin/entrypoint.sh
+
 
 # move to this directory to avoid using cd all times in the script
 WORKDIR /var/www/wordpress

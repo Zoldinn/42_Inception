@@ -31,7 +31,7 @@ services:
     volumes:
       - "wordpress:/var/www/wordpress"
     ports:
-      - "443:443"
+      - "8443:8443"
 
   wordpress:
     container_name: wordpress
