@@ -9,11 +9,36 @@
   - For MariaDB: `SQL_DATABASE`, `SQL_USER`, `SQL_PASSWORD`, `SQL_ROOT_PASSWORD`.
   - For Wordpress:
     - For the admin: `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_EMAIL`
-    - For another user like the subject want: `USER2_LOGIN`, `USER2_PASSWORD`, `USER2_EMAIL`
+    - For another user, like the subject want: `USER2_LOGIN`, `USER2_PASSWORD`, `USER2_EMAIL`
+
 *Note*: if you want to change the variables names, think to change them too in the different configuration files for each services.
+
 *Folder Structure*:
-- The volumes are in `/home/<login>/data`, if you want to change it, go to the docker-compose.yml and changes them in the volumes section around the end of file.
-- Otherwise for the repository cloned, the structure is `root(docs, makefile)/srcs(docker-compose.yml)/requirements/<the_differents_services>/<dockerfiles, conf files>`.
+- The volumes are in `/home/<login>/data`, if you want to change it, go to the `docker-compose.yml` and changes them in the volumes section around the end of file.
+- Otherwise, for the repository cloned, the structure is:
+  - root :
+    - README.md
+    - USER_DOC.md
+    - DEV_DOC.md
+    - Makefile
+    - srcs/ :
+      - docker-compose.yml
+      - .env
+      - requirements/ :
+        - nginx/ :
+          - conf/ :
+            - nginx.conf
+          - Dockerfile
+        - wordpress/ :
+          - tools/ :
+            - entrypoint.sh
+          - Dockerfile
+        - mariadb/ :
+          - conf/ :
+            - my.cnf
+          - tools/ :
+            - entrypoint.sh
+          - Dockerfile
 
 ## *2. Building & Launching (Technical)*
 * `make`: Create folders for volumes. Builds images (using docker-compose : `docker compose -f srcs/docker-compose.yml up --build -d` (`-f` to specify where is docker-compose.yml)) and starts containers in detached mode ( `-d`) to let them work in background.
