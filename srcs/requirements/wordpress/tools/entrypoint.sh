@@ -3,12 +3,12 @@
 cd /var/www/wordpress
 
 # if change port
-WP_PORT="${WP_PORT:-443}"
-if [ "$WP_PORT" = "433" ]; then
-    WP_URL="https://${DOMAIN_NAME}"
-else
-    WP_URL="https://${DOMAIN_NAME}:${WP_PORT}"
-fi
+#WP_PORT="${WP_PORT:-443}"
+#if [ "$WP_PORT" = "443" ]; then
+#    WP_URL="https://${DOMAIN_NAME}"
+#else
+#    WP_URL="https://${DOMAIN_NAME}:${WP_PORT}"
+#fi
 
 # wait mariadb to start with a little test to know if db respond
 echo "Waiting mariadb..."
@@ -32,7 +32,7 @@ if [ ! -f ./wp-config.php ]; then
 
     # installation
     wp core install \
-	--url=$WP_URL \
+	--url=https://$DOMAIN_NAME \
 	--title=$SITE_TITLE \
 	--admin_user=$ADMIN_USER \
 	--admin_password=$ADMIN_PASSWORD \
@@ -50,10 +50,10 @@ else
     echo "Wordpress is already installed"
 fi
 
-wp config set WP_HOME "$WP_URL" --type=constant --allow-root --quiet
-wp config set WP_SITEURL "$WP_URL" --type=constant --allow-root --quiet
-wp option update home "$WP_URL" --allow-root --quiet
-wp option update siteurl "$WP_URL" --allow-root --quiet
+#wp config set WP_HOME "$WP_URL" --type=constant --allow-root --quiet
+#wp config set WP_SITEURL "$WP_URL" --type=constant --allow-root --quiet
+#wp option update home "$WP_URL" --allow-root --quiet
+#wp option update siteurl "$WP_URL" --allow-root --quiet
 
 # return on dockerfile to run the CMD
 exec "$@"

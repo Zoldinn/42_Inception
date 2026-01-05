@@ -17,7 +17,7 @@ RUN mkdir -p /var/run/nginx
 # copy our nginx.conf in the folder to nginx use it
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 8443
+EXPOSE 443
 
 # start nginx
 CMD ["nginx", "-g", "daemon off;"]
